@@ -9,7 +9,7 @@ metadata:
     cis.f5.com/as3-app: A1
     cis.f5.com/as3-pool: web_pool
 spec:
-  type: ClusterIP
+  type: NodePort
   ports:
   - port: 80
     targetPort: 80
