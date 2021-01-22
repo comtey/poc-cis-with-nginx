@@ -39,4 +39,5 @@ spec:
             "--bigip-partition=node1",
             "--pool-member-type=cluster",
             "--flannel-name=k8s-n1-tunnel"
+            "--log-level=debug"
           ]
