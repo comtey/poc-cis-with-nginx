@@ -5,6 +5,9 @@ metadata:
   namespace: nginx-ingress
   labels:
     app: nginx-ingress
+    cis.f5.com/as3-tenant: AS3
+    cis.f5.com/as3-app: A1
+    cis.f5.com/as3-pool: web_pool
 spec:
   type: ClusterIP
   ports:
