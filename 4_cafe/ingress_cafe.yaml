@@ -8,7 +8,7 @@ spec:
   - hosts:
     secretName: cafe-secret
   rules:
-  - host: *
+  - host: 3a19df2f-2fdf-4d9f-984e-62e11d82854f.access.udf.f5.com
     http:
       paths:
       - path: /tea
