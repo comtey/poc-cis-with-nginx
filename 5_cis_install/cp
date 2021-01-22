@@ -1,0 +1,13 @@
+
+
+tmsh create auth partition node1
+tmsh create net tunnels vxlan k8s-vxlan { app-service none port 8472 flooding-type none }
+tmsh create net tunnels tunnel k8s-n1-tunnel { app-service none key 1 local-address 10.1.1.4 profile k8s-vxlan }
+tmsh create net self k8s-vxlan-n1-selfip { address 10.42.20.1/16 vlan k8s-n1-tunnel allow-service all }
+
+tmsh show net tunnels tunnel k8s-n1-tunnel all-properties
+
+
+tmsh create auth partition node2
+tmsh create net tunnels tunnel k8s-n2-tunnel { app-service none key 2 local-address 10.1.1.4 profile k8s-vxlan }
+tmsh create net self k8s-vxlan-n2-selfip { address 10.44.20.1/16 vlan k8s-n2-tunnel allow-service all }
