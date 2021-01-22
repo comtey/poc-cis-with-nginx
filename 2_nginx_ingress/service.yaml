@@ -2,7 +2,13 @@ apiVersion: v1
 kind: Service
 metadata:
   name: nginx-ingress
-  namespace: nginx-ingress
+  namespace: nginx-ingress  
+  labels:
+    app: nginx-ingress
+    cis.f5.com/as3-tenant: Kubernetes
+    cis.f5.com/as3-app: nginx-ingress
+    cis.f5.com/as3-pool: nginx-ingress
+  
 spec:
   type: ClusterIP
   ports:
