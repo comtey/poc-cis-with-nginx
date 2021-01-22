@@ -9,6 +9,7 @@ metadata:
     virtual-server.f5.com/http-port: "80"
     virtual-server.f5.com/ssl-redirect: "false"
     virtual-server.f5.com/balance: "round-robin"
+    virtual-server.f5.com/health: '[{"path": "/","send": "HTTP GET /\r\n", "interval": 5, "timeout": 10}]'
 spec:
   backend:
     serviceName: nginx-ingress
