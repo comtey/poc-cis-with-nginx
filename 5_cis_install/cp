@@ -11,3 +11,9 @@ tmsh show net tunnels tunnel k8s-n1-tunnel all-properties
 tmsh create auth partition node2
 tmsh create net tunnels tunnel k8s-n2-tunnel { app-service none key 2 local-address 10.1.1.4 profile k8s-vxlan }
 tmsh create net self k8s-vxlan-n2-selfip { address 10.44.20.1/16 vlan k8s-n2-tunnel allow-service all }
+
+
+
+kubectl create secret generic bigip-login -n kube-system --from-literal=username=admin --from-literal=password=
+kubectl create serviceaccount k8s-bigip-ctlr -n kube-system
+kubectl create clusterrolebinding k8s-bigip-ctlr-clusteradmin --clusterrole=cluster-admin --serviceaccount=kube-system:k8s-bigip-ctlr
