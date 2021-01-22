@@ -1,21 +1,16 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-namespace: nginx-ingress
-name: nginx-ingress-80
-annotations:
-virtual-server.f5.com/partition: "test96-trust-2004-f5"
-virtual-server.f5.com/ip: 10.192.142.56
-virtual-server.f5.com/http-port: "80"
-virtual-server.f5.com/ssl-redirect: "false"
-virtual-server.f5.com/balance: "round-robin"
+  name: nginx-ingress-80
+  namespace: nginx-ingress
+  annotations:
+    virtual-server.f5.com/partition: "node1"
+    virtual-server.f5.com/ip: 10.1.1.4
+    virtual-server.f5.com/http-port: "80"
+    virtual-server.f5.com/ssl-redirect: "false"
+    virtual-server.f5.com/health: '[{"path": "*", "send": "HTTP GET /health/svc1", "interval": 5, "timeout": 10}]'
+    virtual-server.f5.com/balance: "round-robin"
 spec:
-rules:
-- host:
-http:
-paths:
-- path: /
-pathType: Prefix
-backend:
-serviceName: nginx-ingress
-servicePort: 80
+  backend:
+    serviceName: nginx-ingress
+    servicePort: 80
