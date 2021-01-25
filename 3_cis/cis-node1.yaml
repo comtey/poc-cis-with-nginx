@@ -38,4 +38,5 @@ spec:
             "--insecure=true",
             "--bigip-partition=node1",
             "--pool-member-type=nodeport"
+
           ]
