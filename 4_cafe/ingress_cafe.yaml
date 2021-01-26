@@ -5,7 +5,10 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: "nginx"
 spec:
+<<<<<<< HEAD
   ingressClassName: nginx 
+=======
+>>>>>>> 50dc276 (add nginx support 1.9.1)
   tls:
   - hosts:
     secretName: cafe-secret

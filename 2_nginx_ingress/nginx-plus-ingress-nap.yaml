@@ -1,9 +1,10 @@
 apiVersion: apps/v1
-kind: DaemonSet
+kind: Deployment
 metadata:
   name: nginx-ingress
   namespace: nginx-ingress
 spec:
+  replicas: 1
   selector:
     matchLabels:
       app: nginx-ingress
@@ -11,10 +12,13 @@ spec:
     metadata:
       labels:
         app: nginx-ingress
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "9113"
     spec:
       serviceAccountName: nginx-ingress
       containers:
-      - image: danisch/nginx-plus-nap:1.8.1
+      - image: danisch/nginx-plus-nap:1.9.1
         imagePullPolicy: Always
         name: nginx-plus-ingress
         ports:
@@ -26,6 +30,8 @@ spec:
           hostPort: 443
         - name: readiness-port
           containerPort: 8081
+        - name: prometheus
+          containerPort: 9113
         readinessProbe:
           httpGet:
             path: /nginx-ready
@@ -54,4 +60,6 @@ spec:
           - -default-server-tls-secret=$(POD_NAMESPACE)/default-server-secret
           - -enable-app-protect
           - -report-ingress-status
+          - -enable-prometheus-metrics
           - -nginx-status-allow-cidrs=0.0.0.0/0
+          - -nginx-status-port=30880
