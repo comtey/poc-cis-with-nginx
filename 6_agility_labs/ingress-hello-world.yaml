@@ -4,21 +4,16 @@ metadata:
   name: f5-hello-world-web
   namespace: default
   annotations:
-    virtual-server.f5.com/partition: "node1"
-    virtual-server.f5.com/ip: 10.1.1.4
-    virtual-server.f5.com/http-port: "80"
-    virtual-server.f5.com/ssl-redirect: "false"
-    virtual-server.f5.com/balance: "round-robin"
-    virtual-server.f5.com/health: |
-      [
-        {
-          "path":     "f5.hello.world/",
-          "send":     "HTTP GET /",
-          "interval": 5,
-          "timeout":  10
-        }
-      ]
+    kubernetes.io/ingress.class: "nginx"
 spec:
-  backend:
-    serviceName: f5-hello-world-web
-    servicePort: 8080
+  tls:
+  - hosts:
+    secretName: cafe-secret
+  rules:
+  - host: 8d78df34-3fb9-4e77-8450-ca061eaf4dba.access.udf.f5.com
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: f5-hello-world-web
+          servicePort: 8080
