@@ -1,10 +1,9 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: DaemonSet
 metadata:
   name: nginx-ingress
   namespace: nginx-ingress
 spec:
-  replicas: 1
   selector:
     matchLabels:
       app: nginx-ingress
@@ -58,8 +57,6 @@ spec:
           - -nginx-plus
           - -nginx-configmaps=$(POD_NAMESPACE)/nginx-config
           - -default-server-tls-secret=$(POD_NAMESPACE)/default-server-secret
-          - -enable-app-protect
           - -report-ingress-status
           - -enable-prometheus-metrics
           - -nginx-status-allow-cidrs=0.0.0.0/0
-          - -nginx-status-port=30880
