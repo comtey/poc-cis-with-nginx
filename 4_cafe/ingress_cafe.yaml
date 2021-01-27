@@ -9,7 +9,7 @@ spec:
   - hosts:
     secretName: cafe-secret
   rules:
-  - host: 1b731b71-accd-45a7-ac94-ace88094fea2.access.udf.f5.com
+  - host: 8d78df34-3fb9-4e77-8450-ca061eaf4dba.access.udf.f5.com
     http:
       paths:
       - path: /tea
