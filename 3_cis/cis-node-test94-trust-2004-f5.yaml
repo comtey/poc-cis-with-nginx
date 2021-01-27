@@ -34,9 +34,9 @@ spec:
           args: [
             "--bigip-username=$(BIGIP_USERNAME)",
             "--bigip-password=$(BIGIP_PASSWORD)",
-            "--bigip-url=https://10.1.1.4:8443",
+            "--bigip-url=https://10.192.142.56:8443",
             "--insecure=true",
-            "--bigip-partition=node2",
+            "--bigip-partition=test96-trust-2004-f5",
             "--pool-member-type=nodeport"
 
           ]
