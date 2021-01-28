@@ -4,8 +4,8 @@ metadata:
   name: nginx-ingress-80
   namespace: nginx-ingress
   annotations:
-    virtual-server.f5.com/partition: "node1"
-    virtual-server.f5.com/ip: 10.192.142.57
+    virtual-server.f5.com/partition: "test94-trust-2004-f5"
+    virtual-server.f5.com/ip: 10.192.142.56
     virtual-server.f5.com/http-port: "80"
     virtual-server.f5.com/ssl-redirect: "false"
     virtual-server.f5.com/balance: "round-robin"
